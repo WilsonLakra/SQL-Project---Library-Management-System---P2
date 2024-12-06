@@ -132,7 +132,7 @@ WHERE issued_id = 'IS121';
 -- Objective: Select all books issued by the employee with emp_id = 'E101'.
 ```sql
 SELECT * FROM issued_status
-WHERE issued_emp_id = 'E101'
+WHERE issued_emp_id = 'E101';
 ```
 
 
