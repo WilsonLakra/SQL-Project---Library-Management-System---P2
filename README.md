@@ -513,7 +513,6 @@ WHERE isbn = '978-0-375-41398-8'
 ```
 
 
-
 **Task 20: Create Table As Select (CTAS)**
 Objective: Create a CTAS (Create Table As Select) query to identify overdue books and calculate fines.
 
@@ -526,7 +525,35 @@ Description: Write a CTAS query to create a new table that lists each member and
     Number of overdue books
     Total fines
 
+```sql
 
+CREATE TABLE overdue_books_summary AS
+SELECT 
+    m.member_id,
+    COUNT(CASE WHEN CURRENT_DATE - iss.issued_date > 30 THEN 1 END) AS overdue_books_count,
+    SUM(
+        CASE 
+            WHEN CURRENT_DATE - iss.issued_date > 30 THEN 
+                (CURRENT_DATE - iss.issued_date - 30) * 0.50 
+            ELSE 0 
+        END
+    ) AS total_fines,
+    COUNT(iss.issued_id) AS total_books_issued
+FROM 
+    issued_status iss
+JOIN 
+    members m ON iss.issued_member_id = m.member_id
+LEFT JOIN 
+    return_status rs ON iss.issued_id = rs.issued_id
+WHERE 
+    rs.return_id IS NULL -- Book not returned
+GROUP BY 
+    m.member_id;
+
+
+SELECT * FROM overdue_books_summary;
+
+```
 
 ## Reports
 
