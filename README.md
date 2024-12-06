@@ -95,7 +95,6 @@ CREATE TABLE return_status (
 	return_book_isbn	VARCHAR(25)
 );
 
-
 ```
 
 ### 2. CRUD Operations
