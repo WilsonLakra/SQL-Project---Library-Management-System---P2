@@ -349,27 +349,24 @@ Create a query that generates a performance report for each branch, showing the 
 CREATE TABLE branch_reports
 AS
 SELECT 
-    b.branch_id,
-    b.manager_id,
-    COUNT(ist.issued_id) as number_book_issued,
-    COUNT(rs.return_id) as number_of_book_return,
-    SUM(bk.rental_price) as total_revenue
-FROM issued_status as ist
-JOIN 
-employees as e
-ON e.emp_id = ist.issued_emp_id
-JOIN
-branch as b
-ON e.branch_id = b.branch_id
-LEFT JOIN
-return_status as rs
-ON rs.issued_id = ist.issued_id
-JOIN 
-books as bk
-ON ist.issued_book_isbn = bk.isbn
+	b.branch_id, 
+	b.manager_id, 
+	COUNT(ist.issued_id) AS number_book_issued,
+	COUNT(rs.return_id) AS number_of_book_return,
+	SUM(bk.rental_price) AS toral_revenue
+FROM issued_status AS ist
+JOIN employees AS e
+	ON e.emp_id = ist.issued_emp_id
+JOIN branch AS b
+	ON e.branch_id = b.branch_id
+LEFT JOIN return_status AS rs
+	ON rs.issued_id = ist.issued_id
+JOIN books AS bk
+	ON ist.issued_book_isbn = bk.isbn
 GROUP BY 1, 2;
 
 SELECT * FROM branch_reports;
+
 ```
 
 **Task 16: CTAS: Create a Table of Active Members**  
@@ -381,12 +378,11 @@ CREATE TABLE active_members
 AS
 SELECT * FROM members
 WHERE member_id IN (SELECT 
-                        DISTINCT issued_member_id   
-                    FROM issued_status
-                    WHERE 
-                        issued_date >= CURRENT_DATE - INTERVAL '2 month'
-                    )
-;
+						DISTINCT issued_member_id
+					FROM issued_status
+					WHERE issued_date >= CURRENT_DATE - INTERVAL '2 month' 
+					)
+;			
 
 SELECT * FROM active_members;
 
