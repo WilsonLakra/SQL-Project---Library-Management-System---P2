@@ -37,10 +37,6 @@ CREATE TABLE branch (
 	branch_address	VARCHAR(55),
 	contact_no	VARCHAR(15)
 );
-/*
-ALTER TABLE branch
-ALTER COLUMN contact_no TYPE VARCHAR(20);
-*/
 
 
 -- Creating employees table
@@ -65,10 +61,6 @@ CREATE TABLE books (
 	author	VARCHAR(35),
 	publisher	VARCHAR(55)
 );
-/*
-ALTER TABLE books
-ALTER COLUMN category TYPE VARCHAR(20);
-*/
 
 
 -- Creating members table
