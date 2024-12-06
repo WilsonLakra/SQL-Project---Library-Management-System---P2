@@ -140,12 +140,12 @@ WHERE issued_emp_id = 'E101';
 -- Objective: Use GROUP BY to find members who have issued more than one book.
 
 ```sql
-SELECT
-    issued_emp_id,
-    COUNT(*)
+
+SELECT issued_emp_id, 
+	COUNT(issued_id)  AS total_book_issued 
 FROM issued_status
-GROUP BY 1
-HAVING COUNT(*) > 1
+GROUP BY issued_emp_id
+HAVING COUNT(issued_id) > 1;
 ```
 
 ### 3. CTAS (Create Table As Select)
