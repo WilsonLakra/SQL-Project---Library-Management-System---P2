@@ -213,15 +213,26 @@ Task 11. **Create a Table of Books with Rental Price Above a Certain Threshold**
 CREATE TABLE expensive_books AS
 SELECT * FROM books
 WHERE rental_price > 7.00;
+
+SELECT * FROM expensive_books;
 ```
 
 Task 12: **Retrieve the List of Books Not Yet Returned**
 ```sql
-SELECT * FROM issued_status as ist
-LEFT JOIN
-return_status as rs
-ON rs.issued_id = ist.issued_id
-WHERE rs.return_id IS NULL;
+
+SELECT * 
+FROM issued_status AS ist
+LEFT JOIN return_status AS rs
+ON ist.issued_id = rs.issued_id
+WHERE rs.return_id IS null;
+
+-- List of Books Name Not Yet Returned
+
+SELECT DISTINCT(ist.issued_book_name) 
+FROM issued_status AS ist
+LEFT JOIN return_status AS rs
+ON ist.issued_id = rs.issued_id
+WHERE rs.return_id IS null;
 ```
 
 ## Advanced SQL Operations
