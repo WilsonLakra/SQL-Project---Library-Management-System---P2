@@ -512,8 +512,10 @@ This project demonstrates the application of SQL skills in creating and managing
 
 ## Author - Wilson Lakra
 
-This project showcases SQL skills essential for database management and analysis. For more content on SQL and data analysis, connect with me through the following channels:
+This project is part of my portfolio, showcasing the SQL skills essential for data analyst roles. If you have any questions, feedback, or would like to connect, feel free to get in touch!
 
-- **LinkedIn**: [Connect with me professionally](https://www.linkedin.com/in/najirr)
+## Contact
+
 - **LinkedIn**: [Connect with me professionally](https://www.linkedin.com/in/wilson-lakra-639ab92a4/)
+  
 Thank you for your interest in this project!
