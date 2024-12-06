@@ -115,9 +115,9 @@ VALUES ('978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'H
 **Task 2: Update an Existing Member's Address**
 
 ```sql
-UPDATE members
-SET member_address = '125 Oak St'
-WHERE member_id = 'C103';
+UPDATE members 
+SET member_address = '123 Main St'
+WHERE member_id = 'C101';
 ```
 
 **Task 3: Delete a Record from the Issued Status Table**
