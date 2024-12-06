@@ -125,7 +125,7 @@ WHERE member_id = 'C101';
 
 ```sql
 DELETE FROM issued_status
-WHERE   issued_id =   'IS121';
+WHERE issued_id = 'IS121';
 ```
 
 **Task 4: Retrieve All Books Issued by a Specific Employee**
