@@ -393,18 +393,36 @@ SELECT * FROM active_members;
 Write a query to find the top 3 employees who have processed the most book issues. Display the employee name, number of books processed, and their branch.
 
 ```sql
+
 SELECT 
-    e.emp_name,
-    b.*,
-    COUNT(ist.issued_id) as no_book_issued
-FROM issued_status as ist
-JOIN
-employees as e
-ON e.emp_id = ist.issued_emp_id
-JOIN
-branch as b
-ON e.branch_id = b.branch_id
+	e.emp_name, 
+	b.*,
+	COUNT(ist.issued_id) AS no_book_issued
+	FROM issued_status AS ist
+JOIN employees AS e
+	ON e.emp_id = ist.issued_emp_id
+JOIN branch as b
+	ON e.branch_id = b.branch_id
 GROUP BY 1, 2
+ORDER BY no_book_issued DESC
+LIMIT 3;
+
+
+SELECT 
+	e.emp_name, 
+	COUNT(ist.issued_id) AS no_book_issued, 
+	b.*
+	--b.branch_address
+FROM issued_status AS ist
+	JOIN employees AS e
+ON e.emp_id = ist.issued_emp_id
+	JOIN branch as b
+ON e.branch_id = b.branch_id
+GROUP BY e.emp_name, 3
+ORDER BY no_book_issued
+DESC LIMIT 3;
+
+
 ```
 
 **Task 18: Identify Members Issuing High-Risk Books**  
