@@ -154,11 +154,13 @@ HAVING COUNT(issued_id) > 1;
 
 ```sql
 CREATE TABLE book_issued_cnt AS
-SELECT b.isbn, b.book_title, COUNT(ist.issued_id) AS issue_count
-FROM issued_status as ist
-JOIN books as b
+SELECT b.isbn, b.book_title, COUNT(issued_id) AS issue_count
+FROM issued_status AS ist
+JOIN books AS b
 ON ist.issued_book_isbn = b.isbn
 GROUP BY b.isbn, b.book_title;
+
+SELECT * FROM book_issued_cnt;
 ```
 
 
@@ -176,16 +178,13 @@ WHERE category = 'Classic';
 8. **Task 8: Find Total Rental Income by Category**:
 
 ```sql
-SELECT 
-    b.category,
-    SUM(b.rental_price),
-    COUNT(*)
-FROM 
-issued_status as ist
-JOIN
-books as b
-ON b.isbn = ist.issued_book_isbn
-GROUP BY 1
+SELECT b.category,
+	SUM(rental_price),
+	COUNT(*)
+FROM books AS b
+JOIN issued_status AS ist
+ON b.isbn = issued_book_isbn
+GROUP BY 1;
 ```
 
 9. **List Members Who Registered in the Last 180 Days**:
@@ -197,20 +196,16 @@ WHERE reg_date >= CURRENT_DATE - INTERVAL '180 days';
 10. **List Employees with Their Branch Manager's Name and their branch details**:
 
 ```sql
+
 SELECT 
-    e1.emp_id,
-    e1.emp_name,
-    e1.position,
-    e1.salary,
-    b.*,
-    e2.emp_name as manager
-FROM employees as e1
-JOIN 
-branch as b
-ON e1.branch_id = b.branch_id    
-JOIN
-employees as e2
-ON e2.emp_id = b.manager_id
+	e1.* ,
+	b1.manager_id,
+	e2.emp_name AS manager
+FROM employees AS e1
+JOIN branch AS b1
+ON b1.branch_id = e1.branch_id
+JOIN employees AS e2
+ON b1.manager_id = e2.emp_id;
 ```
 
 Task 11. **Create a Table of Books with Rental Price Above a Certain Threshold**:
